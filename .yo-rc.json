@@ -1,0 +1,6 @@
+{
+  "generator-react-webpack": {
+    "appName": "teampro",
+    "style": "less"
+  }
+}
