@@ -7,7 +7,6 @@ import UI from 'material-ui'
 class TableComponent extends React.Component {
   constructor(props) {
     super(props);
-    //this.state = TimelogsStore.getState();
     this.state = {
       fixedHeader: true,
       fixedFooter: true,
@@ -19,7 +18,6 @@ class TableComponent extends React.Component {
       deselectOnClickaway: true,
       height: '300px'
     }
-
   }
 
   render() {
@@ -36,7 +34,6 @@ class TableComponent extends React.Component {
         </UI.TableRow>
       );
     }.bind(this));
-
 
     return (
       <UI.Table
@@ -63,14 +60,6 @@ class TableComponent extends React.Component {
           {tableRows}
         </UI.TableBody>
       </UI.Table>
-
-
-
-
-
-
-
-
     );
   }
 }

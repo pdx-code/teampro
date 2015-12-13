@@ -2,12 +2,9 @@
 
 import React from 'react';
 import UI from 'material-ui';
-//import Pie from 'react-chartjs/lib/Pie';
-import {Grid, Row, Col} from 'react-bootstrap'
-
 var PieChart = require("react-chartjs").Pie;
 
-require('styles/widgets/timelog/Chart.less');
+require('styles/widgets/timelogs/Chart.less');
 
 class ChartComponent extends React.Component {
   constructor(props) {
@@ -62,7 +59,7 @@ class ChartComponent extends React.Component {
     ];
     let iconButtonElement =  <UI.IconButton iconClassName="material-icons" tooltipPosition="bottom-center" tooltip="Sky">settings_system_daydream</UI.IconButton>;
     return (
-      <div className="charts">
+      <div className="chartView">
         <UI.Toolbar>
 
           <UI.ToolbarGroup>
@@ -75,22 +72,25 @@ class ChartComponent extends React.Component {
           </UI.ToolbarGroup>
 
         </UI.Toolbar>
-        <Grid>
-          <Row>
-            <Col md={5}>
+        <div className="container">
+          <div className="row">
+
+            <div className="col-md-5">
               <ol>
                 <li>Red: 300</li>
                 <li>Orange: 100</li>
                 <li>Green: 50</li>
               </ol>
-            </Col>
-            <Col md={7}>
+            </div>
+
+            <div className="col-md-5">
               <div className="pieChart">
                 <PieChart data={this.state.dataPie} />
               </div>
-            </Col>
-          </Row>
-        </Grid>
+            </div>
+
+          </div>
+        </div>
       </div>
     );
   }

@@ -4,11 +4,12 @@ import React from 'react';
 import UI from 'material-ui';
 import List from './ListComponent';
 import Table from './TableComponent';
-//import Chart from './ChartComponent';
+import Chart from './ChartComponent';
 
 require('styles/widgets/timelogs/Card.less');
 
 class CardComponent extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -50,13 +51,13 @@ class CardComponent extends React.Component {
 
           <UI.Tab label={<UI.FontIcon style={{color: 'white'}} className="material-icons">insert_chart</UI.FontIcon>}>
             <UI.Paper style={{ 'height': '350px', 'overflowY': 'auto' }}>
-              <Table timelogs={this.state.timelogs.recentTimelogs}/>
+              <Chart timelogs={this.state.timelogs.recentTimelogs}/>
             </UI.Paper>
           </UI.Tab>
 
           <UI.Tab label={<UI.FontIcon style={{color: 'white'}} className="material-icons">tab</UI.FontIcon>}>
             <UI.Paper style={{ 'height': '350px', 'overflowY': 'auto' }}>
-              Table
+              <Table timelogs={this.state.timelogs.recentTimelogs}/>
             </UI.Paper>
           </UI.Tab>
         </UI.Tabs>
