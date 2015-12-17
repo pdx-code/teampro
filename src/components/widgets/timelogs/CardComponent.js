@@ -1,4 +1,5 @@
 'use strict';
+require('styles/widgets/timelogs/Card.less');
 
 import React from 'react';
 import UI from 'material-ui';
@@ -6,48 +7,53 @@ import List from './ListComponent';
 import Table from './TableComponent';
 import Chart from './ChartComponent';
 
-require('styles/widgets/timelogs/Card.less');
+import { createStore } from 'redux';
+import { fetchTimelogs } from '../../../actions/TimelogActions';
+import APP from '../../../reducers/TimelogReducer';
+
+
 
 class CardComponent extends React.Component {
 
   constructor(props) {
     super(props);
 
+    let store = createStore(APP, window.fetchTimelogs);
+    console.log('------------------------');
+    console.log(store.getState());
+    //this.state = store.getState();
+
     this.state = {
-      timelogs: {
-        currentTimelogs: {
-          'id': 6,
-          'title': 'Create Timelog Card Widget',
-          'time': '00:00:00'
+      "timelogs": {
+        "currentTimelogs": {
+          "id": 6,
+          "title": "Create Timelog Card Widget",
+          "time": "00:00:00"
 
         },
-        recentTimelogs: [
-          { 'id': 1, 'icon': 'check_circle', 'title': 'Design something amazing', 'time': '04:43' },
-          { 'id': 2, 'icon': 'folder', 'title': 'Smack a Problem', 'time': '21:31' },
-          { 'id': 3, 'icon': 'flag', 'title': 'Smack a Problem', 'time': '21:31' },
-          { 'id': 5, 'icon': 'check_circle', 'title': 'Smack a Problem', 'time': '21:31' },
-          { 'id': 6, 'icon': 'check_circle', 'title': 'Smack a Problem', 'time': '21:31' },
-          { 'id': 7, 'icon': 'check_circle', 'title': 'Smack a Problem', 'time': '21:31' }
+        "recentTimelogs": [
+          { "id": 1, "icon": "check_circle", "title": "Design something amazing", "time": "04:43" },
+          { "id": 2, "icon": "folder", "title": "Smack a Problem", "time": "21:31" },
+          { "id": 3, "icon": "flag", "title": "Smack a Problem", "time": "21:31" },
+          { "id": 5, "icon": "check_circle", "title": "Smack a Problem", "time": "21:31" },
+          { "id": 6, "icon": "check_circle", "title": "Smack a Problem", "time": "21:31" },
+          { "id": 7, "icon": "check_circle", "title": "Smack a Problem", "time": "21:31" }
         ]
       }
     }
+
   }
 
   render() {
     return (
-      <UI.Card style={{width: '50%'}}>
+      <UI.Card style={{width: '50%'}}  initiallyExpanded={true}>
         <UI.CardTitle
           title="My Timelogs"
           initiallyExpanded={true}
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <UI.Tabs>
-          <UI.Tab label={<UI.FontIcon style={{color: 'white'}} className="material-icons">view_list</UI.FontIcon>}>
-            <UI.Paper style={{ 'height': '350px', 'overflowY': 'auto' }}>
-              <List timelogs={this.state.timelogs.recentTimelogs}/>
-            </UI.Paper>
-          </UI.Tab>
+        <UI.Tabs expandable={true}>
 
           <UI.Tab label={<UI.FontIcon style={{color: 'white'}} className="material-icons">insert_chart</UI.FontIcon>}>
             <UI.Paper style={{ 'height': '350px', 'overflowY': 'auto' }}>
@@ -60,6 +66,13 @@ class CardComponent extends React.Component {
               <Table timelogs={this.state.timelogs.recentTimelogs}/>
             </UI.Paper>
           </UI.Tab>
+
+          <UI.Tab label={<UI.FontIcon style={{color: 'white'}} className="material-icons">view_list</UI.FontIcon>}>
+            <UI.Paper style={{ 'height': '350px', 'overflowY': 'auto' }}>
+              <List timelogs={this.state.timelogs.recentTimelogs}/>
+            </UI.Paper>
+          </UI.Tab>
+
         </UI.Tabs>
       </UI.Card>
     );

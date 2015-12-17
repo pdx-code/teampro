@@ -7,57 +7,36 @@ var PieChart = require("react-chartjs").Pie;
 require('styles/widgets/timelogs/Chart.less');
 
 class ChartComponent extends React.Component {
+
   constructor(props) {
     super(props);
-    //this.state = TimelogsStore.getState();
+
     this.state = {
       dataPie: [
-        {
-          value: 300,
-          color:"#F7464A",
-          highlight: "#FF5A5E",
-          label: "Red"
-        },
-        {
-          value: 50,
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Green"
-        },
-        {
-          value: 100,
-          color: "#FDB45C",
-          highlight: "#FFC870",
-          label: "Yellow"
+        { value: 300, color:"#F7464A", highlight: "#FF5A5E", label: "Red" },
+        { value: 50, color: "#46BFBD", highlight: "#5AD3D1", label: "Green" },
+        { value: 100, color: "#FDB45C", highlight: "#FFC870", label: "Yellow"
         }
       ],
-
       optionsPie: {
         segmentShowStroke : true,
         segmentStrokeColor : "#fff",
-        segmentStrokeWidth : 2,
-        percentageInnerCutout : 50, // This is 0 for Pie charts
+        segmentStrokeWidth : 5,
+        percentageInnerCutout : 0, // This is 0 for Pie charts
         animationSteps : 100,
-        animationEasing : "easeOutBounce",
-        animateRotate : true,
-        animateScale : false,
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+        animateRotate : false,
+        animateScale : true
       }
     }
-
   }
 
-  componentDidMount () {
-  }
-
+  componentDidMount () {}
 
   render() {
-    console.log(PieChart.classData);
     let chartTypes = [
       { payload: '1', text: 'Pie' },
       { payload: '2', text: 'Bar' }
     ];
-    let iconButtonElement =  <UI.IconButton iconClassName="material-icons" tooltipPosition="bottom-center" tooltip="Sky">settings_system_daydream</UI.IconButton>;
     return (
       <div className="chartView">
         <UI.Toolbar>
@@ -85,7 +64,7 @@ class ChartComponent extends React.Component {
 
             <div className="col-md-5">
               <div className="pieChart">
-                <PieChart data={this.state.dataPie} />
+                <PieChart data={this.state.dataPie} options={this.state.optionsPie} />
               </div>
             </div>
 
