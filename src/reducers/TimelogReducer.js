@@ -1,7 +1,6 @@
-import $ from 'jquery';
-import{ CREATE_TIMELOG, STOP_TIMELOG, EDIT_TIMELOG_NOTE, FETCH_TIMELOGS } from '../actions/TimelogActions';
+import{ FETCH_TIMELOGS } from '../actions/TimelogActions';
 
-function ajaxTimelogs(url = 'timelogs.json', callback) {
+function ajax(url, callback) {
   var data;
   var fetch;
   fetch = new XMLHttpRequest();
@@ -10,6 +9,7 @@ function ajaxTimelogs(url = 'timelogs.json', callback) {
     if (fetch.readyState == XMLHttpRequest.DONE ) {
       if(fetch.status == 200){
         var data = JSON.parse(fetch.responseText);
+        console.log('---------------------- ajax response ');
         console.log(data);
         if (callback) callback(data);
 
@@ -18,12 +18,14 @@ function ajaxTimelogs(url = 'timelogs.json', callback) {
         data = {
           error: 'There was an error 404'
         };
+        console.log('---------------------- ajax response ');
         console.log(data);
       }
       else {
         data = {
           error: 'something else other than 200 was returned'
         };
+        console.log('---------------------- ajax response ');
         console.log(data);
       }
     }
@@ -35,29 +37,16 @@ function ajaxTimelogs(url = 'timelogs.json', callback) {
   return data;
 }
 
-var defaultState = ajaxTimelogs('timelogs.json', function (data) {
-  return data;
-});
+var defaultState = ajax('timelogs.json', function (return_data) { return return_data; });
 
 export default function timelogReducer(state = defaultState, action) {
   switch (action.type) {
-
-    case CREATE_TIMELOG:
-      var new_timelog = state;
-      new_timelog.timelogs.push(action.timelog);
-      return new_timelog;
-
-    case STOP_TIMELOG:
-      return state;
-
-    case EDIT_TIMELOG_NOTE:
-      return state;
-
     case FETCH_TIMELOGS:
-      var new_fetch = ajaxTimelogs('timelogs.json', function (data) {
-        return data;
+      var new_state = ajax('timelogs.json', function (return_data) {
+        console.log('Fetch timelogs was run');
+        return return_data;
       });
-      return new_fetch;
+      return new_state;
 
     default:
       return state;

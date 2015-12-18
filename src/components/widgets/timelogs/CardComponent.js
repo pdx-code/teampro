@@ -8,19 +8,50 @@ import Table from './TableComponent';
 import Chart from './ChartComponent';
 
 import { createStore } from 'redux';
-import { fetchTimelogs } from '../../../actions/TimelogActions';
-import APP from '../../../reducers/TimelogReducer';
+
+//Do every thing here.
+//=============================================
+
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+//let store = createStore(counter);
+
+//let unsubscribe = store.subscribe(() =>
+//  console.log(store.getState())
+//);
+//
+//store.getState();
+//store.dispatch({ type: 'INCREMENT' }); // 1
+//store.dispatch({ type: 'DECREMENT' }); // 10
+//
+//unsubscribe();
 
 
+//=============================================
 
 class CardComponent extends React.Component {
 
   constructor(props) {
     super(props);
 
-    let store = createStore(APP, window.fetchTimelogs);
+    let store = createStore(counter);
     console.log('------------------------');
+    let unsubscribe = store.subscribe(() =>
+      console.log(store.getState())
+    )
+
     console.log(store.getState());
+
+    unsubscribe();
     //this.state = store.getState();
 
     this.state = {
