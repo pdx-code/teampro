@@ -6,53 +6,12 @@ import UI from 'material-ui';
 import List from './ListComponent';
 import Table from './TableComponent';
 import Chart from './ChartComponent';
-
-import { createStore } from 'redux';
-
-//Do every thing here.
-//=============================================
-
-function counter(state = 0, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
-}
-
-//let store = createStore(counter);
-
-//let unsubscribe = store.subscribe(() =>
-//  console.log(store.getState())
-//);
-//
-//store.getState();
-//store.dispatch({ type: 'INCREMENT' }); // 1
-//store.dispatch({ type: 'DECREMENT' }); // 10
-//
-//unsubscribe();
-
-
-//=============================================
+import TimelogStore from '../../../stores/TimelogsStore';
 
 class CardComponent extends React.Component {
 
   constructor(props) {
     super(props);
-
-    let store = createStore(counter);
-    console.log('------------------------');
-    let unsubscribe = store.subscribe(() =>
-      console.log(store.getState())
-    )
-
-    console.log(store.getState());
-
-    unsubscribe();
-    //this.state = store.getState();
 
     this.state = {
       "timelogs": {
