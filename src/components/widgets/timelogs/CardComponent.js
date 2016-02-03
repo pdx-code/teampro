@@ -30,8 +30,7 @@ class CardComponent extends React.Component {
           { "id": 7, "icon": "check_circle", "title": "Smack a Problem", "time": "21:31" }
         ]
       }
-    }
-
+    };
   }
 
   render() {

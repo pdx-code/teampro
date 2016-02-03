@@ -3,6 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 import TimelogCard from './widgets/timelogs/CardComponent';
+import ActionsCard from './widgets/actions/CardComponent';
 
 let injectTapEventPlugin = require("react-tap-event-plugin");
 injectTapEventPlugin();
@@ -16,7 +17,7 @@ class AppComponent extends React.Component {
   render() {
     return (
       <div style={{padding: '20px'}} className="appContainer">
-        <TimelogCard />
+        <ActionsCard />
       </div>
     );
   }
